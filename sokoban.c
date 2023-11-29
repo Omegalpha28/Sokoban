@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "sokoban.h"
 #include <unistd.h>
+#include <fcntl.h>
 
 int sokoban(char **av)
 {
@@ -25,9 +26,15 @@ void my_help(void)
 
 int is_help(char **av)
 {
+    int fd = 0;
+
     if (my_strcmp(av[1], "-h") == 0) {
         my_help();
         return 0;
+    }
+    fd = open(av[1], O_RDONLY);
+    if (fd != -1) {
+        return (sokoban(av));
     } else {
         write(2, "Nope!\n", 7);
         return 84;
@@ -38,8 +45,6 @@ int main(int ac, char **av)
 {
     if (ac == 2) {
         return(is_help(av));
-    } else if (ac == 1) {
-        sokoban(av);
     } else {
         write(2, "Nope!\n", 7);
         return 84;
