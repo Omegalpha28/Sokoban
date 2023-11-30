@@ -19,7 +19,7 @@ $(SOKOBAN):
 	gcc -c $(SRC) -Iinclude
 	ar rcs $(LIBMY_A) $(FILE_O)
 	gcc -c sokoban.c $(LIBMY_A) -Iinclude
-	gcc -o $(SOKOBAN) sokoban.c $(LIBMY_A) -Iinclude -g3
+	gcc -o $(SOKOBAN) sokoban.c $(LIBMY_A) -lncurses -Iinclude -g3
 	make clean
 
 clean:
