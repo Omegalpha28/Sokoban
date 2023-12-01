@@ -16,6 +16,7 @@
 void display(char **world, int size_col, element *e)
 {
     int playing = 1;
+
     search_player(world, e);
     initscr();
     my_display_in_center(stdscr, world, size_col);
