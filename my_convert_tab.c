@@ -39,7 +39,7 @@ int my_column(char const *word)
 
 void append(char **world, int i, int j, char const *word)
 {
-    if (word[i] == '#' || word[i] == 'P' || word[i] == 'O' ||word[i] == 'X' ||
+    if (word[i] == '#' || word[i] == 'P' || word[i] == 'O' || word[i] == 'X' ||
         word[i] == ' ') {
         world[j][i] = word[i];
     }
