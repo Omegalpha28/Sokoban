@@ -6,7 +6,10 @@
 ##
 
 SRC = mp_something.c \
-	my_strcmp.c
+	my_strcmp.c \
+	my_display_in_center.c \
+	my_convert_tab.c \
+	help_and_open_file.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a

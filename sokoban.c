@@ -11,60 +11,45 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include "sokoban.h"
 
-int display(char const *word)
+void display(char **world, int size_col)
 {
     initscr();
-    printf("%s", word);
-    mvwaddstr(stdscr, 0, 0, word);
+    my_display_in_center(stdscr, world, size_col);
     refresh();
     getch();
     endwin();
 }
 
+int create_tab(char const *word)
+{
+    char **world;
+    int size_col = my_column(word);
+    int size_length = my_length(word);
+
+    world = malloc(sizeof(char *) * (size_col + 1));
+    world = my_convert_tab(word, world, size_col, size_length);
+    display(world, size_col);
+}
+
 int sokoban(char **av, int fd)
 {
-    int reading = 0;
+    int size_word = 0;
     struct stat c;
     char *word = NULL;
-    char **world;
 
     stat(av[1], &c);
     word = malloc(c.st_size + 1);
     if (word != NULL) {
-        reading = read(fd, word, c.st_size);
+        read(fd, word, c.st_size);
         word[c.st_size] = '\0';
-        printf("%s", word);
-        display(word);
+        create_tab(word);
+        free(word);
+        return 0;
     } else {
         write(2, "Empty File\n", 12);
-        return 84;
-    }
-    return 0;
-}
-
-void my_help(void)
-{
-    my_putstr("USAGE\n     ./my_sokoban map\nDESCRIPTION\n     map  file ");
-    my_putstr("representing the warehouse map, containing ‘#’ for walls,\n");
-    my_putstr("          ");
-    my_putstr("‘P’ for the player, ‘X’ for boxes and ‘O’ for storage ");
-    my_putstr("locations.\n");
-}
-
-int is_help(char **av)
-{
-    int fd = 0;
-
-    if (my_strcmp(av[1], "-h") == 0) {
-        my_help();
-        return 0;
-    }
-    fd = open(av[1], O_RDONLY);
-    if (fd != -1) {
-        return (sokoban(av, fd));
-    } else {
-        write(2, "Nope!\n", 7);
+        free(word);
         return 84;
     }
 }
