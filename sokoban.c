@@ -13,8 +13,10 @@
 #include <stdlib.h>
 #include "sokoban.h"
 
-void display(char **world, int size_col)
+void display(char **world, int size_col, element *e)
 {
+    int playing = 1;
+    search_player(world, e);
     initscr();
     my_display_in_center(stdscr, world, size_col);
     refresh();
@@ -24,13 +26,24 @@ void display(char **world, int size_col)
 
 int create_tab(char const *word)
 {
+    element e;
     char **world;
     int size_col = my_column(word);
     int size_length = my_length(word);
 
+    e.box = 'X';
+    e.goal = 'O';
+    e.player = 'P';
+    e.wall = '#';
+    if (verif_word(word) == 84) {
+        write(2, "Bad caracters in file!\n", 24);
+        return 84;
+    }
     world = malloc(sizeof(char *) * (size_col + 1));
     world = my_convert_tab(word, world, size_col, size_length);
-    display(world, size_col);
+    display(world, size_col, &e);
+    free(world);
+    return 0;
 }
 
 int sokoban(char **av, int fd)

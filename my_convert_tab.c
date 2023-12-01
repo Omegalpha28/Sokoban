@@ -8,6 +8,16 @@
 #include <stdlib.h>
 #include "sokoban.h"
 
+int verif_word(char const *word)
+{
+    for (int i = 0; word[i] != '\0' ; i++) {
+        if (!(word[i] == '#' || word[i] == 'P' || word[i] == 'O' ||
+            word[i] == 'X' || word[i] == ' ' || word[i] == '\n'))
+            return 84;
+    }
+    return 0;
+}
+
 int my_length(char const *word)
 {
     int longeur = 0;
