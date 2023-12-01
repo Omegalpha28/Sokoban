@@ -1,3 +1,9 @@
+/*
+** EPITECH PROJECT, 2023
+** SOKOBAN
+** File description:
+** if the player make -h and is_help is for open the file
+*/
 #include <fcntl.h>
 #include "sokoban.h"
 #include <unistd.h>
