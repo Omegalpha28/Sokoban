@@ -10,8 +10,9 @@ SRC = mp_something.c \
 	my_display_in_center.c \
 	my_convert_tab.c \
 	help_and_open_file.c \
-	player_up.c \
-	search_player.c
+	search_player.c \
+	search_goal.c \
+	moving.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a

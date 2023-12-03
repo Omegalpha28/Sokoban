@@ -9,21 +9,25 @@
     #define SOKOBAN_
     #include <curses.h>
 typedef struct {
-    char wall;
-    char player;
-    char box;
-    char goal;
+    char *wall;
+    char *player;
+    char *box;
+    char *goal;
     int pos_x;
     int pos_y;
-
 }element;
+typedef struct {
+    int size_col;
+    int size_length;
+}size_tab;
 int my_strcmp(char const *s1, char const *s2);
 char my_putchar(char a);
 int my_putstr(char const *str);
-void my_display_in_center(WINDOW *stdscr, char **word, int size_col);
+void my_display_in_center(WINDOW *stdscr, char **world, size_tab *s,
+    element *e);
 int num_len(int n);
 int my_put_nbr(int nb);
-void display(char **world, int size_col, element *e);
+void display(char **world, size_tab *s, element *e);
 int my_strlen(char const *str);
 int sokoban(char **av, int fd);
 int is_help(char **av);
@@ -36,4 +40,11 @@ int create_tab(char const *word);
 void search_player(char **world, element *e);
 void where_is_player(char **world, element *e, int i, int j);
 int verif_word(char const *word);
+int moving_player(element *e, char **world, int playing, int t_pressed);
+int is_moving(element *e, char **world, int move_x, int move_y);
+int is_moving_with_box_x(element *e, char **world, int move_x, int move_y);
+int is_moving_with_box_y(element *e, char **world, int move_x, int move_y);
+int is_moving(element *e, char **world, int move_x, int move_y);
+int search_goal(char **world, size_tab *s);
+int is_goal(char **world, size_tab *s, int i, int j);
 #endif
