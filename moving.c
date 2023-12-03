@@ -69,10 +69,7 @@ int is_moving(element *e, char **world, int move_x, int move_y)
 
 int moving_player(element *e, char **world, int playing, int t_pressed)
 {
-    playing = 0;
-
-    switch (t_pressed)
-    {
+    switch (t_pressed) {
     case 'z':
         return (is_moving(e, world, -1, 0));
     case 's':
@@ -85,54 +82,3 @@ int moving_player(element *e, char **world, int playing, int t_pressed)
         return 0;
     }
 }
-
-/*int is_moving_with_box_y(element *e, char **world, int move_x, int move_y) {
-    int playing = 0;
-
-    if (world[e->pos_x + move_x][e->pos_y + move_y] == ' ') {
-        if (move_y < 0)
-            move_y += -1;
-        if (move_y > 0)
-            move_y += 1;
-        world[e->pos_x + move_x][e->pos_y + move_y] = 'X'; // Fix: Use '=' for assignment
-        e->pos_x += move_x;
-        e->pos_y += move_y - 1;
-    }
-    if (world[e->pos_x + move_x][e->pos_y + move_y] == 'O') {
-        if (move_y < 0)
-            move_y += -1;
-        if (move_y > 0)
-            move_y += 1;
-        world[e->pos_x + move_x][e->pos_y + move_y] = 'X'; // Fix: Use '=' for assignment
-        e->pos_x += move_x - 1;
-        e->pos_y += move_y;
-        playing -= 1;
-    }
-    return playing;
-}
-
-int is_moving_with_box_x(element *e, char **world, int move_x, int move_y) {
-    int playing = 0;
-
-    if (world[e->pos_x + move_x][e->pos_y + move_y] == ' ') {
-        if (move_x < 0)
-            move_x += -1;
-        if (move_x > 0)
-            move_x += 1;
-        world[e->pos_x + move_x][e->pos_y + move_y] = 'X'; // Fix: Use '=' for assignment
-        e->pos_x += move_x - 1;
-        e->pos_y += move_y;
-    }
-    if (world[e->pos_x + move_x][e->pos_y + move_y] == 'O') {
-        if (move_x < 0)
-            move_x += -1;
-        if (move_x > 0)
-            move_x += 1;
-        world[e->pos_x + move_x][e->pos_y + move_y] = 'X'; // Fix: Use '=' for assignment
-        e->pos_x += move_x - 1;
-        e->pos_y += move_y;
-        playing -= 1;
-    }
-    return playing;
-}
-*/
