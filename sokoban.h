@@ -54,4 +54,5 @@ int comparate_my_box(int blocked, int count_box_stuck, int search_goal,
     size_tab *s);
 int my_box_is_here(char **world, int i, int j);
 int verify_box(char **world, int i, int j);
+void test(char w, int i, int j, element *e);
 #endif

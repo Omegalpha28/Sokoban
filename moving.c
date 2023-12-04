@@ -23,7 +23,7 @@ int is_moving_with_box_y(element *e, char **world, int move_x, int move_y)
         world[e->pos_x + move_x][e->pos_y + move_y] = ' ';
         e->pos_x += move_x;
         e->pos_y += move_y;
-        playing -= 1;
+        playing = -1;
     }
     return playing;
 }
@@ -43,7 +43,7 @@ int is_moving_with_box_x(element *e, char **world, int move_x, int move_y)
         world[e->pos_x + move_x][e->pos_y + move_y] = ' ';
         e->pos_x += move_x;
         e->pos_y += move_y;
-        playing -= 1;
+        playing = -1;
     }
     return playing;
 }
@@ -69,13 +69,13 @@ int is_moving(element *e, char **world, int move_x, int move_y)
 int moving_player(element *e, char **world, int playing, int t_pressed)
 {
     switch (t_pressed) {
-    case 'z':
+    case KEY_UP:
         return (is_moving(e, world, -1, 0));
-    case 's':
+    case KEY_DOWN:
         return (is_moving(e, world, 1, 0));
-    case 'q':
+    case KEY_LEFT:
         return (is_moving(e, world, 0, -1));
-    case 'd':
+    case KEY_RIGHT:
         return (is_moving(e, world, 0, 1));
     default:
         return 0;

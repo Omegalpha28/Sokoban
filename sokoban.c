@@ -14,18 +14,20 @@
 
 void display(char **world, size_tab *s, element *e)
 {
-    int playing = search_goal(world, s);
     int t_pressed;
 
+    s->playing = search_goal(world, s);
+    s->stuck = 0;
     search_player(world, e);
     world[e->pos_x][e->pos_y] = ' ';
     initscr();
     keypad(stdscr, TRUE);
     noecho();
-    while (getch() != 27 && playing != 0) {
-        t_pressed = getch();
+    while (getch() != 27 && s->playing != 0) {
         my_display_in_center(stdscr, world, s, e);
-        playing += moving_player(e, world, playing, t_pressed);
+        t_pressed = getch();
+        s->playing += moving_player(e, world, s->playing, t_pressed);
+        my_box(world, s, search_goal(world, s));
     }
     endwin();
 }
@@ -50,7 +52,7 @@ int create_tab(char const *word)
     world = my_convert_tab(word, world, s.size_col, s.size_length);
     display(world, &s, &e);
     free(world);
-    return 0;
+    return s.stuck;
 }
 
 int sokoban(char **av, int fd)
@@ -58,15 +60,16 @@ int sokoban(char **av, int fd)
     int size_word = 0;
     struct stat c;
     char *word = NULL;
+    int retour = 0;
 
     stat(av[1], &c);
     word = malloc(c.st_size + 1);
     if (word != NULL) {
         read(fd, word, c.st_size);
         word[c.st_size] = '\0';
-        create_tab(word);
+        retour = create_tab(word);
         free(word);
-        return 0;
+        return retour;
     } else {
         write(2, "Empty File\n", 12);
         free(word);
