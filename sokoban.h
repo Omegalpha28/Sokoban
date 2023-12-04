@@ -19,6 +19,8 @@ typedef struct {
 typedef struct {
     int size_col;
     int size_length;
+    int playing;
+    int stuck;
 }size_tab;
 int my_strcmp(char const *s1, char const *s2);
 char my_putchar(char a);
@@ -47,4 +49,9 @@ int is_moving_with_box_y(element *e, char **world, int move_x, int move_y);
 int is_moving(element *e, char **world, int move_x, int move_y);
 int search_goal(char **world, size_tab *s);
 int is_goal(char **world, size_tab *s, int i, int j);
+void my_box(char **world, size_tab *s, int search_goal);
+int comparate_my_box(int blocked, int count_box_stuck, int search_goal,
+    size_tab *s);
+int my_box_is_here(char **world, int i, int j);
+int verify_box(char **world, int i, int j);
 #endif
