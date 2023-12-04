@@ -10,11 +10,20 @@
 
 int verif_word(char const *word)
 {
+    int count_goal = 0;
+    int count_box = 0;
+
     for (int i = 0; word[i] != '\0' ; i++) {
+        if (word[i] == 'O')
+            count_goal++;
+        if (word[i] == 'X')
+            count_box++;
         if (!(word[i] == '#' || word[i] == 'P' || word[i] == 'O' ||
             word[i] == 'X' || word[i] == ' ' || word[i] == '\n'))
             return 84;
     }
+    if (count_box != count_goal)
+        return 84;
     return 0;
 }
 
