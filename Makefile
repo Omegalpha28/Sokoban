@@ -12,7 +12,8 @@ SRC = mp_something.c \
 	help_and_open_file.c \
 	search_player.c \
 	search_goal.c \
-	moving.c
+	moving.c \
+	my_box.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a
