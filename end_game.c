@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** SOKOBAN
 ** File description:
-** it's my main bro
+** the game is over
 */
 #include <curses.h>
 #include <sys/stat.h>

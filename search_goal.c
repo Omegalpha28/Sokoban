@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** SOKOBAN
 ** File description:
-** it's my main bro
+** give the number of goal
 */
 #include <curses.h>
 #include <sys/stat.h>

@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** SOKOBAN
 ** File description:
-** these function will display the argument given in the center of the map.
+** comparison between two tab
 */
 #include <curses.h>
 #include <unistd.h>
