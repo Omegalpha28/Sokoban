@@ -17,7 +17,7 @@ void my_help(void)
     my_putstr("locations.\n");
 }
 
-int is_help(char **av)
+int is_help(char **av, element *e)
 {
     int fd = 0;
 
@@ -27,7 +27,7 @@ int is_help(char **av)
     }
     fd = open(av[1], O_RDONLY);
     if (fd != -1) {
-        return (sokoban(av, fd));
+        return (sokoban(av, fd, e));
     } else {
         write(2, "Nope!\n", 7);
         return 84;

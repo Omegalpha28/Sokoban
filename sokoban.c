@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "sokoban.h"
 
-void display(char **world, size_tab *s, element *e)
+void display(char **world, size_tab *s, element *e, char **backup_world)
 {
     int t_pressed;
 
@@ -23,39 +23,39 @@ void display(char **world, size_tab *s, element *e)
     initscr();
     keypad(stdscr, TRUE);
     noecho();
-    while (getch() != 27 && s->playing != 0) {
+    while (s->playing != 0) {
+        if (end_game(world, s) == 1)
+            break;
         my_display_in_center(stdscr, world, s, e);
         t_pressed = getch();
-        s->playing += moving_player(e, world, s->playing, t_pressed);
-        my_box(world, s, search_goal(world, s));
+        compare_world(backup_world, world, s);
+        moving_player(e, world, backup_world, t_pressed);
     }
     endwin();
 }
 
-int create_tab(char const *word)
+int create_tab(char const *word, element *e)
 {
-    element e;
     size_tab s;
     char **world;
+    char **backup_world;
 
     s.size_col = my_column(word);
     s.size_length = my_length(word);
-    e.box = "X";
-    e.goal = "O";
-    e.player = "P";
-    e.wall = "#";
     if (verif_word(word) == 84) {
-        write(2, "Bad caracters in file!\n", 24);
         return 84;
     }
     world = malloc(sizeof(char *) * (s.size_col + 1));
     world = my_convert_tab(word, world, s.size_col, s.size_length);
-    display(world, &s, &e);
+    backup_world = malloc(sizeof(char *) * (s.size_col + 1));
+    backup_world = my_convert_tab_void(word, backup_world, s.size_col,
+        s.size_length);
+    display(world, &s, e, backup_world);
     free(world);
     return s.stuck;
 }
 
-int sokoban(char **av, int fd)
+int sokoban(char **av, int fd, element *e)
 {
     int size_word = 0;
     struct stat c;
@@ -67,7 +67,7 @@ int sokoban(char **av, int fd)
     if (word != NULL) {
         read(fd, word, c.st_size);
         word[c.st_size] = '\0';
-        retour = create_tab(word);
+        retour = create_tab(word, e);
         free(word);
         return retour;
     } else {
@@ -79,8 +79,14 @@ int sokoban(char **av, int fd)
 
 int main(int ac, char **av)
 {
+    element e;
+
+    e.box = "X";
+    e.goal = "O";
+    e.player = "P";
+    e.wall = "#";
     if (ac == 2) {
-        return (is_help(av));
+        return (is_help(av, &e));
     } else {
         write(2, "Nope!\n", 7);
         return 84;

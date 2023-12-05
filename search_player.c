@@ -27,3 +27,20 @@ void search_player(char **world, element *e)
         }
     }
 }
+
+void where_is_box(char **world, element *e, int i, int j)
+{
+    if (world[i][j] == 'X') {
+        e->pos_x = i;
+        e->pos_y = j;
+    }
+}
+
+void search_box(char **world, element *e)
+{
+    for (int i = 0; world[i] != NULL; i++) {
+        for (int j = 0; world[j] != NULL; j++) {
+            where_is_player(world, e, i, j);
+        }
+    }
+}

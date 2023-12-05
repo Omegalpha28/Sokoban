@@ -13,7 +13,10 @@ SRC = mp_something.c \
 	search_player.c \
 	search_goal.c \
 	moving.c \
-	my_box.c
+	my_box.c \
+	my_convert_tab_void.c \
+	compare_world.c \
+	end_game.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a
