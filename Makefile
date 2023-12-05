@@ -20,8 +20,6 @@ SRC = mp_something.c \
 
 FILE_O = *.o
 LIBMY_A = libmy.a
-INCLUDE = include
-CONV = $(SRCS:.c=.o)
 SOKOBAN = sokoban
 
 
