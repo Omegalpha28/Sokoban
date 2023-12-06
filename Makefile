@@ -20,7 +20,7 @@ SRC = mp_something.c \
 
 FILE_O = *.o
 LIBMY_A = libmy.a
-SOKOBAN = sokoban
+SOKOBAN = my_sokoban
 
 
 $(SOKOBAN):
