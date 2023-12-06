@@ -31,14 +31,19 @@ int my_length(char const *word)
 {
     int longeur = 0;
     int i = 0;
+    int size = 0;
 
     while (word[i] != '#') {
         i++;
     }
-    for (i; word[i] != '\n'; i++){
+    for (i; word[i] != '\0'; i++){
         longeur++;
+        if (word[i] == '\n') {
+            size = size_verif(size, longeur);
+            longeur = 0;
+        }
     }
-    return longeur;
+    return size;
 }
 
 int my_column(char const *word)

@@ -54,6 +54,7 @@ int num_len(int n);
 void search_box(char **world, element *e);
 int search_goal(char **world, size_tab *s);
 void search_player(char **world, element *e);
+int size_verif(int size, int longeur);
 int sokoban(char **av, int fd, element *e);
 void test(char w, int i, int j, element *e);
 void verif_comparaison(char **back_world, char **world, int i, int j);

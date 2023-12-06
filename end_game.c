@@ -20,13 +20,15 @@ int verif_end_game(char w)
 int end_game(char **world, size_tab *s)
 {
     int end = 0;
+    int goal = 0;
 
     for (int i = 0; i < s->size_col; i++) {
         for (int j = 0; j < s->size_length; j++) {
             end += verif_end_game(world[i][j]);
         }
     }
-    if (end == 0) {
+    goal = search_goal(world, s);
+    if (end == 0 || my_box(world, s, goal) == 1) {
         return 1;
     } else {
         return 0;
