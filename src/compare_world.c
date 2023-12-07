@@ -6,7 +6,7 @@
 */
 #include <curses.h>
 #include <unistd.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 #include <stdio.h>
 
 void verif_comparaison(char **back_world, char **world, int i, int j)

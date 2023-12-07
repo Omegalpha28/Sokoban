@@ -4,6 +4,7 @@
 ** File description:
 ** my_strcmp
 */
+#include "../sokoban.h"
 
 int my_strcmp(char const *s1, char const *s2)
 {

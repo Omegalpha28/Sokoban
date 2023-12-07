@@ -6,7 +6,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 int verif_word(char const *word)
 {

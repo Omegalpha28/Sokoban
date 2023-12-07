@@ -6,7 +6,7 @@
 */
 #include <curses.h>
 #include <sys/stat.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 int verif_end_game(char w)
 {

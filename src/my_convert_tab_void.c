@@ -6,7 +6,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 void append2(char **world, int i, int j, char const *word)
 {

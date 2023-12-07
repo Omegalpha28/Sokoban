@@ -6,7 +6,7 @@
 */
 #include <curses.h>
 #include <unistd.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 int is_moving_with_box_y(element *e, char **world, int move_y)
 {

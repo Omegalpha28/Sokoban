@@ -6,7 +6,7 @@
 */
 #include <curses.h>
 #include <unistd.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 void test(char w, int i, int j, element *e)
 {

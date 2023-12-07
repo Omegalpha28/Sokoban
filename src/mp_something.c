@@ -5,7 +5,7 @@
 ** my_put_something
 */
 #include <unistd.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 char my_putchar(char a)
 {

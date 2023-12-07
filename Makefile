@@ -5,18 +5,18 @@
 ## SIUUUUUUUUUU look at this Makefile it work.
 ##
 
-SRC = mp_something.c \
-	my_strcmp.c \
-	my_display_in_center.c \
-	my_convert_tab.c \
-	help_and_open_file.c \
-	search_player.c \
-	search_goal.c \
-	moving.c \
-	my_box.c \
-	my_convert_tab_void.c \
-	compare_world.c \
-	end_game.c
+SRC = src/mp_something.c \
+	src/my_strcmp.c \
+	src/my_display_in_center.c \
+	src/my_convert_tab.c \
+	src/help_and_open_file.c \
+	src/search_player.c \
+	src/search_goal.c \
+	src/moving.c \
+	src/my_box.c \
+	src/my_convert_tab_void.c \
+	src/compare_world.c \
+	src/end_game.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a

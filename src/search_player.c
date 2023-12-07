@@ -6,10 +6,9 @@
 */
 #include <curses.h>
 #include <stdio.h>
-#include "sokoban.h"
 #include <unistd.h>
 #include <sys/stat.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 void where_is_player(char **world, element *e, int i, int j)
 {

@@ -5,7 +5,7 @@
 ** if the player make -h and is_help is for open the file
 */
 #include <fcntl.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 #include <unistd.h>
 
 void my_help(void)

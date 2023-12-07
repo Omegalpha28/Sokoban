@@ -6,7 +6,7 @@
 */
 #include <curses.h>
 #include <sys/stat.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 int is_goal(char **world, size_tab *s, int i, int j)
 {

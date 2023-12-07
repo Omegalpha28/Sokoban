@@ -6,7 +6,7 @@
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include "sokoban.h"
+#include "../sokoban.h"
 
 int size_verif(int size, int longeur)
 {
