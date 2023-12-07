@@ -43,6 +43,7 @@ char **my_convert_tab_void(char const *word, char **world, int size,
     int longeur_j);
 void my_display_in_center(WINDOW *stdscr, char **world, size_tab *s,
     element *e);
+void my_display_world(char **world, size_tab *s, element *e);
 void my_help(void);
 int my_length(char const *word);
 char my_putchar(char a);
@@ -58,6 +59,7 @@ int size_verif(int size, int longeur);
 int sokoban(char **av, int fd, element *e);
 void test(char w, int i, int j, element *e);
 void verif_comparaison(char **back_world, char **world, int i, int j);
+void verif_display_world(char w, int i, int j, element *e);
 int verif_end_game(char w);
 int verif_word(char const *word);
 int verify_box(char **world, int i, int j);

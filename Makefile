@@ -16,7 +16,8 @@ SRC = src/mp_something.c \
 	src/my_box.c \
 	src/my_convert_tab_void.c \
 	src/compare_world.c \
-	src/end_game.c
+	src/end_game.c \
+	src/my_display_world.c
 
 FILE_O = *.o
 LIBMY_A = libmy.a

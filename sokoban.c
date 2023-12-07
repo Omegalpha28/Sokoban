@@ -52,6 +52,7 @@ int create_tab(char const *word, element *e)
     backup_world = my_convert_tab_void(word, backup_world, s.size_col,
         s.size_length);
     display(world, &s, e, backup_world);
+    my_display_world(world, &s, e);
     free(world);
     return s.stuck;
 }
