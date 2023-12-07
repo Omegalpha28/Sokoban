@@ -21,11 +21,11 @@ typedef struct {
     int size_length;
     int playing;
     int stuck;
+    int goal;
 }size_tab;
 void append(char **world, int i, int j, char const *word);
 void append2(char **world, int i, int j, char const *word);
-int comparate_my_box(int blocked, int count_box_stuck, int search_goal,
-    size_tab *s);
+int comparate_my_box(int blocked, int count_box_stuck);
 void compare_world(char **back_world, char **world, size_tab *s);
 int create_tab(char const *word, element *e);
 void display(char **world, size_tab *s, element *e, char **backup_world);

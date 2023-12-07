@@ -19,29 +19,21 @@ int size_verif(int size, int longeur)
 
 int verify_box(char **world, int i, int j)
 {
-    int wall_count = 0;
-
     if (world[i][j] == 'X') {
-        if (world[i - 1][j] == '#' && world[i][j - 1] == '#')
-            wall_count++;
-        if (world[i  + 1][j] == '#' && world[i - 1][j] == '#')
-            wall_count++;
-        if (world[i][j - 1] == '#')
-            wall_count++;
-        if (world[i][j + 1] == '#')
-            wall_count++;
+        if ((world[i][j - 1] == '#' || world[i][j + 1] == '#') &&
+            (world[i - 1][j] == '#' || world[i + 1][j] == '#'))
+            return 1;
     }
-    return wall_count;
+    return 0;
 }
 
-int comparate_my_box(int blocked, int count_box_stuck, int search_goal,
-    size_tab *s)
+int comparate_my_box(int blocked, int count_box_stuck)
 {
-    if (blocked >= 2) {
+    if (blocked == 1) {
         count_box_stuck += 1;
         return count_box_stuck;
     } else {
-        return 0;
+        return count_box_stuck;
     }
 }
 
@@ -52,12 +44,11 @@ int my_box(char **world, size_tab *s, int search_goal)
 
     for (int i = 0; i < s->size_col; i++) {
         for (int j = 0; j < s->size_length; j++) {
-            blocked = 0;
             blocked = verify_box(world, i, j);
-            count_box_stuck = comparate_my_box(blocked, count_box_stuck,
-                search_goal, s);
+            count_box_stuck = comparate_my_box(blocked, count_box_stuck);
         }
     }
     if (count_box_stuck == search_goal)
         return 1;
+    return 0;
 }

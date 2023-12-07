@@ -16,6 +16,7 @@ void display(char **world, size_tab *s, element *e, char **backup_world)
 {
     int t_pressed;
 
+    s->goal = search_goal(world, s);
     s->playing = search_goal(world, s);
     s->stuck = 0;
     search_player(world, e);
@@ -24,12 +25,12 @@ void display(char **world, size_tab *s, element *e, char **backup_world)
     keypad(stdscr, TRUE);
     noecho();
     while (s->playing != 0) {
-        if (end_game(world, s) == 1)
-            break;
         my_display_in_center(stdscr, world, s, e);
         t_pressed = getch();
         compare_world(backup_world, world, s);
         moving_player(e, world, backup_world, t_pressed);
+        if (end_game(world, s) == 1)
+            s->playing = 0;
     }
     endwin();
 }
