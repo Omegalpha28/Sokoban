@@ -10,21 +10,17 @@
 
 int is_moving_with_box_y(element *e, char **world, int move_y)
 {
-    int playing = 0;
-
     if (world[e->pos_x][e->pos_y + move_y * 2] == ' ' ||
         world[e->pos_x][e->pos_y + move_y * 2] == 'O') {
         world[e->pos_x][e->pos_y + move_y * 2] = 'X';
         world[e->pos_x][e->pos_y + move_y] = ' ';
         e->pos_y += move_y;
     }
-    return playing;
+    return 0;
 }
 
 int is_moving_with_box_x(element *e, char **world, int move_x)
 {
-    int playing = 0;
-
     if (world[e->pos_x + move_x * 2][e->pos_y] == ' ' ||
         world[e->pos_x + move_x * 2][e->pos_y] == 'O') {
         world[e->pos_x + move_x * 2][e->pos_y] = 'X';
@@ -34,20 +30,22 @@ int is_moving_with_box_x(element *e, char **world, int move_x)
     return 0;
 }
 
+int is_moving_with_box(element *e, char **world, int move_x, int move_y)
+{
+    if (move_x != 0)
+        is_moving_with_box_x(e, world, move_x);
+    if (move_y != 0)
+        is_moving_with_box_y(e, world, move_y);
+}
+
 int is_moving(element *e, char **world, int move_x, int move_y)
 {
-    int playing = 0;
-
     if (world[e->pos_x + move_x][e->pos_y + move_y] == ' ' ||
         world[e->pos_x + move_x][e->pos_y + move_y] == 'O') {
         e->pos_x += move_x;
         e->pos_y += move_y;
-    }
-    if (world[e->pos_x + move_x][e->pos_y + move_y] == 'X') {
-        if (move_x != 0)
-            playing = is_moving_with_box_x(e, world, move_x);
-        if (move_y != 0)
-            playing = is_moving_with_box_y(e, world, move_y);
+    } else if (world[e->pos_x + move_x][e->pos_y + move_y] == 'X') {
+        is_moving_with_box(e, world, move_x, move_y);
     }
     return 0;
 }

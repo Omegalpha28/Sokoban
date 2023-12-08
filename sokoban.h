@@ -33,6 +33,7 @@ int end_game(char **world, size_tab *s);
 int is_goal(char **world, size_tab *s, int i, int j);
 int is_help(char **av, element *e);
 int is_moving(element *e, char **world, int move_x, int move_y);
+int is_moving_with_box(element *e, char **world, int move_x, int move_y);
 int is_moving_with_box_x(element *e, char **world, int move_x);
 int is_moving_with_box_y(element *e, char **world, int move_y);
 int moving_player(element *e, char **world, char **back_world, int t_pressed);
