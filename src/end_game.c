@@ -26,7 +26,10 @@ int end_game(char **world, size_tab *s)
             end += verif_end_game(world[i][j]);
         }
     }
-    if (end == 0 || my_box(world, s, s->goal) == 1) {
+    if (end == 0){
+        return 1;
+    } else if (my_box(world, s, s->goal) == 1) {
+        s->stuck = 1;
         return 1;
     } else {
         return 0;
