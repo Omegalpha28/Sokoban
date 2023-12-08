@@ -69,4 +69,5 @@ int moving_player(element *e, char **world, char **back_world, int t_pressed)
     default:
         break;
     }
+    return 0;
 }
