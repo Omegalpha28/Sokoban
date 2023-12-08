@@ -36,6 +36,7 @@ int is_moving_with_box(element *e, char **world, int move_x, int move_y)
         is_moving_with_box_x(e, world, move_x);
     if (move_y != 0)
         is_moving_with_box_y(e, world, move_y);
+    return 0;
 }
 
 int is_moving(element *e, char **world, int move_x, int move_y)
