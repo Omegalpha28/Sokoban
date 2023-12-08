@@ -18,7 +18,6 @@ void display(char **world, size_tab *s, element *e, char **backup_world)
 
     s->goal = search_goal(world, s);
     s->playing = search_goal(world, s);
-    s->stuck = 0;
     search_player(world, e);
     world[e->pos_x][e->pos_y] = ' ';
     initscr();
@@ -32,6 +31,7 @@ void display(char **world, size_tab *s, element *e, char **backup_world)
         if (end_game(world, s) == 1)
             s->playing = 0;
     }
+    my_display_in_center(stdscr, world, s, e);
     endwin();
 }
 
@@ -41,6 +41,7 @@ int create_tab(char const *word, element *e)
     char **world;
     char **backup_world;
 
+    s.stuck = 0;
     s.size_col = my_column(word);
     s.size_length = my_length(word);
     if (verif_word(word) == 84) {
