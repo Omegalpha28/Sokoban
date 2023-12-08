@@ -16,8 +16,8 @@ void display(char **world, size_tab *s, element *e, char **backup_world)
 {
     int t_pressed;
 
-    s->goal = search_goal(world, s);
-    s->playing = search_goal(world, s);
+    s->goal = search_goal(world, s, e);
+    s->playing = search_goal(world, s, e);
     search_player(world, e);
     world[e->pos_x][e->pos_y] = ' ';
     initscr();
@@ -84,10 +84,10 @@ int main(int ac, char **av)
 {
     element e;
 
-    e.box = "X";
-    e.goal = "O";
+    e.box = 'X';
+    e.goal = 'O';
     e.player = "P";
-    e.wall = "#";
+    e.wall = '#';
     if (ac == 2) {
         return (is_help(av, &e));
     } else {

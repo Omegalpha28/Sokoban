@@ -9,10 +9,10 @@
     #define SOKOBAN_
     #include <curses.h>
 typedef struct {
-    char *wall;
+    char wall;
     char *player;
-    char *box;
-    char *goal;
+    char box;
+    char goal;
     int pos_x;
     int pos_y;
 }element;
@@ -30,7 +30,7 @@ void compare_world(char **back_world, char **world, size_tab *s);
 int create_tab(char const *word, element *e);
 void display(char **world, size_tab *s, element *e, char **backup_world);
 int end_game(char **world, size_tab *s);
-int is_goal(char **world, size_tab *s, int i, int j);
+int is_goal(char **world, element *e, int i, int j);
 int is_help(char **av, element *e);
 int is_moving(element *e, char **world, int move_x, int move_y);
 int is_moving_with_box(element *e, char **world, int move_x, int move_y);
@@ -54,7 +54,7 @@ int my_strcmp(char const *s1, char const *s2);
 int my_strlen(char const *str);
 int num_len(int n);
 void search_box(char **world, element *e);
-int search_goal(char **world, size_tab *s);
+int search_goal(char **world, size_tab *s, element *e);
 void search_player(char **world, element *e);
 int size_verif(int size, int longeur);
 int sokoban(char **av, int fd, element *e);

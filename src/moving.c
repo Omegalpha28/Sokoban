@@ -22,8 +22,8 @@ int is_moving_with_box_y(element *e, char **world, int move_y)
 int is_moving_with_box_x(element *e, char **world, int move_x)
 {
     if (world[e->pos_x + move_x * 2][e->pos_y] == ' ' ||
-        world[e->pos_x + move_x * 2][e->pos_y] == 'O') {
-        world[e->pos_x + move_x * 2][e->pos_y] = 'X';
+        world[e->pos_x + move_x * 2][e->pos_y] == e->goal) {
+        world[e->pos_x + move_x * 2][e->pos_y] = e->box;
         world[e->pos_x + move_x][e->pos_y] = ' ';
         e->pos_x += move_x;
     }
@@ -42,10 +42,10 @@ int is_moving_with_box(element *e, char **world, int move_x, int move_y)
 int is_moving(element *e, char **world, int move_x, int move_y)
 {
     if (world[e->pos_x + move_x][e->pos_y + move_y] == ' ' ||
-        world[e->pos_x + move_x][e->pos_y + move_y] == 'O') {
+        world[e->pos_x + move_x][e->pos_y + move_y] == e->goal) {
         e->pos_x += move_x;
         e->pos_y += move_y;
-    } else if (world[e->pos_x + move_x][e->pos_y + move_y] == 'X') {
+    } else if (world[e->pos_x + move_x][e->pos_y + move_y] == e->box) {
         is_moving_with_box(e, world, move_x, move_y);
     }
     return 0;
